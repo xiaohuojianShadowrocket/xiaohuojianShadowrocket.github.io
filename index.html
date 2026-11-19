@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="小火箭 Shadowrocket 账号指南 — 共享账号、独享账号、美区 Apple ID，附下载与配置教程。" />
+<link rel="icon" href="data:," />
+<title>小火箭ID账号 — Shadowrocket 共享与独享账号</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#ffffff; --surface-2:#eef2f7;
+    --text:#0f172a; --muted:#5b6b82; --line:#e2e8f0;
+    --navy:#081a3a; --navy-2:#0d2b5c; --blue:#2563eb; --blue-dark:#1d4ed8;
+    --cyan:#0ea5e9; --red:#e11d48; --green:#16a34a; --amber:#d97706; --violet:#7c3aed;
+    --radius:16px; --shadow:0 10px 30px rgba(15,23,42,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0b1220; --surface:#111c30; --surface-2:#16233c; --text:#e8eef7; --muted:#9fb0c6; --line:#24344f; --shadow:0 10px 30px rgba(0,0,0,.35); }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button,[role="button"],summary{ min-height:44px; }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  /* Header */
+  .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--surface) 92%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.2px;color:var(--blue);white-space:nowrap}
+  .brand-mark{width:36px;height:36px;border-radius:10px;background:var(--navy);display:grid;place-items:center;flex:0 0 auto}
+  .nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .nav a{padding:9px 13px;border-radius:999px;font-size:14.5px;color:var(--muted);font-weight:500}
+  .nav a.active,.nav a:hover{background:#e8effe;color:var(--blue-dark)}
+  @media (prefers-color-scheme: dark){ .nav a.active,.nav a:hover{background:#1e3358;color:#fff} }
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 14px;font-size:15px;cursor:pointer;color:var(--text)}
+  @media(max-width:820px){
+    .menu-btn{display:inline-flex;align-items:center}
+    .nav{display:none;position:absolute;left:16px;right:16px;top:70px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}
+    .nav.open{display:flex}
+    .nav a{padding:12px 14px}
+  }
+  /* Hero */
+  .hero{background:radial-gradient(900px 420px at 75% -10%, #1d4ed8 0%, transparent 55%),linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 58%,#0a214d 100%);color:#fff;padding:64px 0 72px;text-align:center;overflow:hidden}
+  .hero h1{margin:0;font-size:clamp(34px,6vw,56px);line-height:1.15;font-weight:900;letter-spacing:.5px}
+  .hero h1 .hl{color:#38bdf8}
+  .hero .sub{margin:16px auto 0;font-size:clamp(16px,2.4vw,20px);color:#cbd5e1;font-weight:500}
+  .hero .desc{margin:12px auto 0;max-width:640px;color:#94a8c4;font-size:15.5px;line-height:1.8}
+  .hero-actions{margin:30px auto 0;max-width:560px;background:#fff;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 50px rgba(0,0,0,.35);text-align:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;padding:14px 18px;font-weight:700;font-size:15.5px;border:1.5px solid transparent;cursor:pointer;min-height:52px;transition:.15s}
+  .btn-red{background:var(--red);color:#fff}.btn-red:hover{background:#be123c}
+  .btn-outline{border-color:#e2e8f0;color:#0f172a;background:#fff}.btn-outline:hover{border-color:var(--red);color:var(--red)}
+  .btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-dark)}
+  .btn-ghost{border-color:var(--line);background:var(--surface);color:var(--text)}
+  .hero-note{margin-top:16px;font-size:13px;color:#7f93b3}
+  /* Sections */
+  section{padding:64px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 36px}
+  .sec-head h2{margin:0;font-size:clamp(26px,4vw,34px);font-weight:800}
+  .sec-head p{margin:10px 0 0;color:var(--muted);font-size:15.5px}
+  .sec-head.left{text-align:left;margin-left:0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:860px){.grid3,.grid2{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 2px 10px rgba(15,23,42,.03)}
+  .icon-box{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:22px;margin-bottom:16px}
+  .ib-blue{background:#dbeafe}.ib-green{background:#dcfce7}.ib-violet{background:#ede9fe}.ib-amber{background:#fef3c7}.ib-cyan{background:#e0f2fe}
+  @media (prefers-color-scheme: dark){ .ib-blue,.ib-green,.ib-violet,.ib-amber,.ib-cyan{background:#1e3358} }
+  .card h3{margin:0 0 8px;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:14.5px}
+  /* Type cards */
+  .type-card{padding:30px;display:flex;flex-direction:column}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;color:#fff;width:fit-content}
+  .badge-share{background:var(--blue)} .badge-solo{background:var(--violet)}
+  .type-card h3{display:inline;margin:0 0 0 10px;font-size:23px;vertical-align:middle}
+  .type-head{display:flex;align-items:center;margin-bottom:12px}
+  .feat{list-style:none;margin:16px 0 22px;padding:0;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+  .feat li{display:flex;gap:9px;align-items:flex-start}
+  .ok{color:var(--green);font-weight:800}.warn{color:var(--amber);font-weight:800}
+  .type-card .btn{margin-top:auto}
+  .price-hint{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .step-num{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:12px}
+  .step h3{margin:0 0 6px;font-size:16px}.step p{margin:0;color:var(--muted);font-size:14px}
+  .alert{margin-top:20px;background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:14px;padding:16px 18px;font-size:14.5px}
+  @media (prefers-color-scheme: dark){ .alert{background:#2a2110;border-color:#5c4512;color:#fcd34d} }
+  /* Compare */
+  .compare{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .compare table{width:100%;border-collapse:collapse;font-size:14.5px}
+  .compare th,.compare td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+  .compare th{background:var(--surface-2);font-weight:700}
+  .compare tr:last-child td{border-bottom:none}
+  @media(max-width:640px){
+    .compare table,.compare tbody,.compare tr,.compare td{display:block;width:100%}
+    .compare thead{display:none}
+    .compare tr{padding:10px 0;border-bottom:1px solid var(--line)}
+    .compare td{border:none;padding:6px 18px}
+    .compare td:first-child{font-weight:700;color:var(--muted);font-size:13px}
+  }
+  /* FAQ */
+  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  details.faq{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 20px}
+  details.faq summary{cursor:pointer;font-weight:600;font-size:15.5px;padding:12px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"⌄";color:var(--muted);font-size:20px;line-height:1}
+  details.faq[open ] summary::after{transform:rotate(180deg)}
+  details.faq p{margin:0 0 16px;color:var(--muted);font-size:14.5px}
+  /* Deploy */
+  .deploy{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px}
+  .deploy ol{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:15px;display:flex;flex-direction:column;gap:8px}
+  .deploy code{background:var(--surface-2);padding:2px 7px;border-radius:6px;font-size:13.5px;color:var(--text)}
+  .deploy-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .deploy-actions .btn{flex:1;min-width:200px}
+  /* CTA */
+  .cta{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:22px;padding:44px 28px;text-align:center}
+  .cta h2{margin:0;font-size:clamp(24px,4vw,32px)}
+  .cta p{color:#b9c8de;margin:12px auto 24px;max-width:520px}
+  .cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta .btn{min-width:200px}
+  .btn-white{background:#fff;color:var(--navy)}
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 28px;background:var(--surface)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+  footer h4{margin:0 0 12px;font-size:15px}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;color:var(--muted);font-size:14.5px}
+  footer p{color:var(--muted);font-size:14.5px;margin:10px 0 0;max-width:420px}
+  .copy{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#0f172a;color:#fff;padding:12px 18px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:99;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7l9 5 9-5-9-5Z" fill="#38bdf8"/><path d="m3 12 9 5 9-5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="m3 17 9 5 9-5" stroke="#94a3b8" stroke-width="2" stroke-linejoin="round"/></svg></span>小火箭ID</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">菜单 ☰</button>
+    <nav class="nav" id="mainNav" aria-label="主导航">
+      <a href="#home" class="active">首页</a><a href="#guide">账号指南</a><a href="#share">共享账号</a><a href="#solo">独享账号</a><a href="#tutorial">教程</a><a href="#faq">FAQ</a><a href="#deploy">部署网站</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero" id="home">
+  <div class="wrap">
+    <h1>小火箭<span class="hl"> Shadowrocket </span>账号</h1>
+    <p class="sub">小火箭ID账号 — 共享账号 · 独享账号 · 美区 Apple ID</p>
+    <p class="desc">提供 Shadowrocket 小火箭账号获取指南，共享账号经济实惠，独享账号安全可靠，助你轻松下载小火箭。</p>
+    <div class="hero-actions">
+      <a class="btn btn-red" href="#share">⭐ 获取共享账号 · 经济实惠适合下载</a>
+      <a class="btn btn-outline" href="#solo">独享账号 · 一人独享长期使用</a>
+      <a class="btn btn-red" href="#types">🛒 查看账号类型与区别</a>
+    </div>
+    <p class="hero-note">仅在 App Store 登录账号下载应用，切勿登录 iCloud</p>
+  </div>
+</div>
+
+<!-- Why -->
+<section id="why" style="padding-top:56px">
+  <div class="wrap">
+    <div class="sec-head"><h2>为什么选择小火箭ID</h2><p>专注小火箭账号服务，安全可靠，售后无忧</p></div>
+    <div class="grid3">
+      <div class="card"><div class="icon-box ib-blue">🛡️</div><h3>账号稳定可靠</h3><p>所有账号均经过严格测试，确保可用。共享账号定期维护更新密码，独享账号一次购买永久使用。</p></div>
+      <div class="card"><div class="icon-box ib-green">⚡</div><h3>多种选择</h3><p>共享账号经济实惠适合一次性下载，独享账号安全可靠适合长期使用，满足不同需求。</p></div>
+      <div class="card"><div class="icon-box ib-violet">🎛️</div><h3>详细教程</h3><p>从账号登录到小火箭配置，手把手图文教程帮你快速上手，新手也能轻松搞定。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Types -->
+<section id="types" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><h2>账号类型</h2><p>根据你的需求选择最适合的账号类型</p></div>
+    <div class="grid2">
+      <article class="card type-card" id="share">
+        <div class="type-head"><span class="badge badge-share">🤝 共享</span><h3>共享账号</h3></div>
+        <p>多人共用的 Apple ID，仅用于 App Store 下载 Shadowrocket，经济实惠。</p>
+        <ul class="feat">
+          <li><span class="ok">✓</span> 价格实惠，适合一次性下载</li>
+          <li><span class="ok">✓</span> 操作简单，登录 App Store 即可</li>
+          <li><span class="ok">✓</span> 不需要自己注册外区账号</li>
+          <li><span class="warn">⚠</span> 不能修改密码，不能登录 iCloud</li>
+        </ul>
+        <a class="btn btn-blue" href="#guide">了解共享账号 →</a>
+        <p class="price-hint">适合：只想下载一次小火箭、预算有限的用户</p>
+      </article>
+      <article class="card type-card" id="solo">
+        <div class="type-head"><span class="badge badge-solo">🔒 独享</span><h3>独享账号</h3></div>
+        <p>一人独享的 Apple ID，完全掌控，安全可靠，适合长期使用。</p>
+        <ul class="feat">
+          <li><span class="ok">✓</span> 完全掌控，可自由修改密码密保</li>
+          <li><span class="ok">✓</span> 支持登录 iCloud 同步数据</li>
+          <li><span class="ok">✓</span> 不会被他人使用或锁定</li>
+          <li><span class="ok">✓</span> 可开启双重认证，安全无忧</li>
+        </ul>
+        <a class="btn" style="background:var(--violet);color:#fff" href="#guide">了解独享账号 →</a>
+        <p class="price-hint">适合：长期使用、换机恢复、在意账号安全的用户</p>
+      </article>
+    </div>
+
+    <div style="height:22px"></div>
+    <div class="compare" aria-label="共享与独享对比">
+      <table>
+        <thead><tr><th style="width:28%">对比项</th><th>共享账号</th><th>独享账号</th></tr></thead>
+        <tbody>
+          <tr><td>使用人数</td><td>多人共用</td><td>一人独享</td></tr>
+          <tr><td>修改密码</td><td>不可以</td><td>可以自由修改</td></tr>
+          <tr><td>登录 iCloud</td><td>不可以</td><td>可以</td></tr>
+          <tr><td>适合场景</td><td>一次性下载 Shadowrocket</td><td>长期使用、多次恢复下载</td></tr>
+          <tr><td>稳定性</td><td>需定期维护更新</td><td>自己掌控，更稳定</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Guide -->
+<section id="guide">
+  <div class="wrap">
+    <div class="sec-head"><h2>使用步骤</h2><p>四步下载 Shadowrocket，下载完记得退出并切回自己的账号</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>打开 App Store</h3><p>点击右上角头像，先退出你自己的 Apple ID。</p></div>
+      <div class="step"><div class="step-num">2</div><h3>登录外区账号</h3><p>只在 App Store 里登录，不要去「设置」里登录 iCloud。</p></div>
+      <div class="step"><div class="step-num">3</div><h3>搜索并下载</h3><p>搜索 Shadowrocket 并下载，等待安装完成。</p></div>
+      <div class="step"><div class="step-num">4</div><h3>退出并切回</h3><p>下载完成后立即退出共享账号，登录回自己的 Apple ID。</p></div>
+    </div>
+    <div class="alert"><strong>重要提醒：</strong>共享账号只能登录 App Store，千万不要登录 iCloud，也不要修改密码或密保，否则可能导致手机被锁。独享账号是你自己的账号，不受此限制。</div>
+  </div>
+</section>
+
+<!-- Tutorials -->
+<section id="tutorial" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head left" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:16px;flex-wrap:wrap"><div><h2>使用教程</h2><p style="margin-top:8px">下载只是第一步，配置好才能正常使用</p></div></div>
+    <div class="grid3">
+      <div class="card"><div class="icon-box ib-blue">📱</div><h3>Shadowrocket 教程</h3><p>iOS 小火箭下载安装与配置教程：添加节点、选择规则模式、开启连接的完整流程。</p></div>
+      <div class="card"><div class="icon-box ib-amber">💻</div><h3>Clash 教程</h3><p>Clash Meta / Verge 配置教程，适合 Windows 与 Mac 电脑端使用。</p></div>
+      <div class="card"><div class="icon-box ib-cyan">🗄️</div><h3>Sing-box 教程</h3><p>新一代代理客户端配置说明，适合进阶用户多平台使用。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--surface);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><h2>常见问题</h2><p>关于小火箭账号的常见疑问解答</p></div>
+    <div class="faq-list">
+      <details class="faq" open><summary>什么是小火箭账号？</summary><p>小火箭账号是用于下载 Shadowrocket（小火箭）的外区 Apple ID。由于国区 App Store 下架了代理类应用，需要用美区等外区账号在 App Store 里才能搜索并下载。</p></details>
+      <details class="faq"><summary>共享账号和独享账号有什么区别？</summary><p>共享账号是多人共用同一个 Apple ID，只能用来下载，价格更实惠，但不能改密码、不能登录 iCloud。独享账号是一人独享，可以改密码和密保、开启双重认证，适合长期使用。</p></details>
+      <details class="faq"><summary>如何使用共享账号下载小火箭？</summary><p>打开 App Store → 点击头像退出自己的账号 → 登录共享账号 → 搜索 Shadowrocket 下载 → 下载完成后立即退出共享账号 → 登录回自己的 Apple ID。注意：只在 App Store 登录，不要登录 iCloud。</p></details>
+      <details class="faq"><summary>共享账号登录后会影响我的隐私吗？</summary><p>不会。只要只在 App Store 登录就不会影响隐私。App Store 登录只能用于下载应用，对方看不到你的通讯录、照片等任何个人数据。下载完成后退出即可。</p></details>
+      <details class="faq"><summary>换了新手机怎么办？</summary><p>登录原来的 Apple ID → App Store → 右上角头像 → 已购项目 → 找到 Shadowrocket → 点击云朵图标恢复下载。不需要重新付费。独享账号在这一步最省心，因为账号完全由你掌控。</p></details>
+      <details class="faq"><summary>下载后还需要什么才能用？</summary><p>Shadowrocket 本身只是一个客户端，还需要你自己的节点订阅或配置才能连接。账号只解决「下载应用」这一步，节点服务需要另行准备。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- Deploy -->
+<section id="deploy">
+  <div class="wrap">
+    <div class="sec-head"><h2>把这个网站放到 GitHub Pages</h2><p>仓库名就用你定的 <strong>xiaohuojianShadowrocket.github.io</strong>，按下面四步就能上线</p></div>
+    <div class="deploy">
+      <strong>部署步骤</strong>
+      <ol>
+        <li>在 GitHub 新建一个仓库，名字填 <code>xiaohuojianShadowrocket.github.io</code>，选 Public，不要勾选初始化文件。</li>
+        <li>点下方按钮下载本页的 <code>index.html</code>，在仓库里点 <code>Add file → Upload files</code> 把它传上去并 Commit。</li>
+        <li>打开仓库 <code>Settings → Pages</code>，Source 选 <code>Deploy from a branch</code>，分支选 <code>main</code> / <code>/(root)</code> 后保存。</li>
+        <li>等 1–2 分钟，访问 <code>https://xiaohuojianShadowrocket.github.ioShadowrocket.github.io/</code> 就是你的网站。以后改价格、联系方式、购买链接，直接编辑仓库里的 <code>index.html</code> 再提交即可。</li>
+      </ol>
+      <div class="deploy-actions">
+        <button class="btn btn-blue" id="dlBtn" type="button">⬇ 下载 index.html 上传到仓库</button>
+        <button class="btn btn-ghost" id="copyBtn" type="button">复制仓库名：xiaohuojianShadowrocket.github.io</button>
+      </div>
+      <p style="color:var(--muted);font-size:13.5px;margin:16px 0 0">提示：页面顶部的购买按钮目前是页内跳转。等你有自己的店铺 / 发卡 / 联系方式链接后，把按钮的链接换成你的真实地址即可对外卖。</p>
+    </div>
+
+    <div style="height:28px"></div>
+    <div class="cta">
+      <h2>准备好下载小火箭了吗？</h2>
+      <p>选择适合你的账号类型，轻松获取 Shadowrocket。只下载一次选共享，长期使用选独享。</p>
+      <div class="row"><a class="btn btn-white" href="#share">选择共享账号</a><a class="btn btn-red" href="#solo">选择独享账号</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7l9 5 9-5-9-5Z" fill="#38bdf8"/><path d="m3 12 9 5 9-5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></span>小火箭ID</a>
+        <p>专注分享小火箭 Shadowrocket 账号相关服务，包括共享账号、独享账号、美区 Apple ID 注册、下载教程、配置指南与常见问题解答。</p>
+      </div>
+      <div><h4>快速导航</h4><ul><li><a href="#guide">账号指南</a></li><li><a href="#share">共享账号</a></li><li><a href="#solo">独享账号</a></li><li><a href="#tutorial">客户端教程</a></li><li><a href="#faq">常见问题</a></li></ul></div>
+      <div><h4>热门分类</h4><ul><li><a href="#tutorial">使用教程</a></li><li><a href="#tutorial">iOS 专区</a></li><li><a href="#types">对比中心</a></li><li><a href="#faq">错误解决</a></li><li><a href="#deploy">部署指南</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 小火箭ID账号. All rights reserved.</span><span>本站仅提供账号使用指南，请遵守当地法律法规</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+  var nav=document.getElementById('mainNav'), btn=document.getElementById('menuBtn'), toast=document.getElementById('toast'), t;
+  function show(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(t); t=setTimeout(function(){toast.classList.remove('show')},2600); }
+  btn.addEventListener('click',function(){ var open=nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open?'true':'false'); });
+  nav.addEventListener('click',function(e){ if(e.target.tagName==='A'){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
+  document.getElementById('dlBtn').addEventListener('click',function(){
+    var html='<!doctype html>\n'+document.documentElement.outerHTML;
+    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='index.html'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
+    show('index.html 已下载，去 GitHub 仓库 xiaohuojianShadowrocket.github.io 里上传它即可');
+  });
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var txt='xiaohuojianShadowrocket.github.io';
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){show('仓库名已复制：xiaohuojianShadowrocket.github.io')},function(){show('仓库名：xiaohuojianShadowrocket.github.io')}); }
+    else{ show('仓库名：xiaohuojianShadowrocket.github.io'); }
+  });
+  // Highlight nav on scroll
+  var links=nav.querySelectorAll('a');
+  var secs=['home','guide','share','solo','tutorial','faq','deploy'].map(function(id){return document.getElementById(id)}).filter(Boolean);
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY+120, cur='home';
+    secs.forEach(function(s){ if(s.offsetTop<=y) cur=s.id; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
